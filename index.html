@@ -3367,32 +3367,35 @@
   }
 
   function exportJSON() {
-      const jsonContent = JSON.stringify(db, null, 2);
-      const today = new Date().toISOString().slice(0, 10);
-      
-      const namePart = (db.companyName || '').trim() 
-        ? (db.companyName || '').trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '_')
-        : today;
-        
-      const fileName = `KLON_CORP_${namePart}_backup.json`;
-      const blob = new Blob([jsonContent], { type: 'application/json' });
-      const msg = `${t('export_note')}<br><br><a href="https://alphapicker.github.io/klon/" target="_blank" style="color: var(--accent-purple); font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 4px;">${t('discover_klon')}</a>`;
-      const msg = `${t('export_note')}<br><br><a href="https://alphapicker.github.io/klon-stake/" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 4px;">${t('discover_klon_stake')}</a>`;
-      // Téléchargement direct via lien temporaire (compatible PC et mobile)
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = fileName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+  const jsonContent = JSON.stringify(db, null, 2);
+  const today = new Date().toISOString().slice(0, 10);
+  
+  const namePart = (db.companyName || '').trim() 
+    ? (db.companyName || '').trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '_')
+    : today;
+    
+  const fileName = `KLON_CORP_${namePart}_backup.json`;
+  const blob = new Blob([jsonContent], { type: 'application/json' });
+  
+  // Message combiné avec les deux liens (Callon/KLON et KLON STAKE)
+  const msg = `${t('export_note')}<br><br>` +
+    `<a href="https://alphapicker.github.io/klon/" target="_blank" style="color: var(--accent-purple); font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 4px;">${t('discover_klon')}</a><br>` +
+    `<a href="https://alphapicker.github.io/klon-stake/" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 4px;">${t('discover_klon_stake')}</a>`;
 
-      // Délai allongé à 700ms pour laisser le temps au téléphone d'initialiser le téléchargement
-      setTimeout(() => {
-        showCustomDialog('💾', t('export_title'), msg, false, null);
-        URL.revokeObjectURL(url);
-      }, 700);
-    }
+  // Téléchargement direct via lien temporaire
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  setTimeout(() => {
+    showCustomDialog('💾', t('export_title'), msg, false, null);
+    URL.revokeObjectURL(url);
+  }, 700);
+}
 
   function importJSON(event) {
     const file = event.target.files[0];
