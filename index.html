@@ -1449,6 +1449,7 @@
 	  export_title: "Exportation réussie !",
       export_note: "Note : Si vous utilisez aussi KLON, pensez à l'exporter séparément. Les sauvegardes sont distinctes.",
 	  discover_klon: "👉 Découvrir KLON",
+	  discover_klon_stake: "👉 Découvrir KLON STAKE",
       reset_confirm: "Es-tu sûr de vouloir tout réinitialiser à zéro ? Toutes les données et l'historique d'exploitation seront effacés.",
       fortuneo_copied: "✅ Code copié ! Redirection...",
 
@@ -1672,6 +1673,7 @@
 	  export_title: "Successful Export!",
       export_note: "Note: If you also use KLON, remember to export it separately. Backups are distinct.",
 	  discover_klon: "👉 Discover KLON",
+	  discover_klon_stake: "👉 Discover KLON STAKE",
       reset_confirm: "Are you sure you want to reset everything? All data and operating history will be deleted.",
       fortuneo_copied: "✅ Code copied! Redirecting...",
 
@@ -3375,7 +3377,7 @@
       const fileName = `KLON_CORP_${namePart}_backup.json`;
       const blob = new Blob([jsonContent], { type: 'application/json' });
       const msg = `${t('export_note')}<br><br><a href="https://alphapicker.github.io/klon/" target="_blank" style="color: var(--accent-purple); font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 4px;">${t('discover_klon')}</a>`;
-
+      const msg = `${t('export_note')}<br><br><a href="https://alphapicker.github.io/klon-stake/" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 4px;">${t('discover_klon_stake')}</a>`;
       // Téléchargement direct via lien temporaire (compatible PC et mobile)
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
