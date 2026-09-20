@@ -19,7 +19,7 @@
 
   <style>
     :root[data-theme="dark"] {
-	  color-scheme: dark; /* Force le navigateur et le système à utiliser des éléments natifs sombres */
+      color-scheme: dark;
       --bg-color: #0d1117;
       --card-bg: #161b22;
       --border-color: #30363d;
@@ -31,6 +31,7 @@
       --accent-orange: #f0883e;
       --accent-red: #da3633;
       --accent-purple: #a371f7;
+      --accent-yellow: #f59e0b;
       --nav-active-bg: #21262d;
       --btn-paypal-bg: #238636;
       --btn-paypal-text: #ffffff;
@@ -38,6 +39,7 @@
     }
 
     :root[data-theme="light"] {
+      color-scheme: light;
       --bg-color: #f0f2f5;
       --card-bg: #ffffff;
       --border-color: #d0d7de;
@@ -49,6 +51,7 @@
       --accent-orange: #bc4c00;
       --accent-red: #cf222e;
       --accent-purple: #8250df;
+      --accent-yellow: #d97706;
       --nav-active-bg: #e1e4e8;
       --btn-paypal-bg: #1f883d;
       --btn-paypal-text: #ffffff;
@@ -56,6 +59,7 @@
     }
 
     :root[data-theme="colorblind"] {
+      color-scheme: dark;
       --bg-color: #000000;
       --card-bg: #121212;
       --border-color: #ffffff;
@@ -67,6 +71,7 @@
       --accent-orange: #ff8000;
       --accent-red: #ffcc00;
       --accent-purple: #ffff00;
+      --accent-yellow: #ffcc00;
       --nav-active-bg: #2a2a2a;
       --btn-paypal-bg: #0d6efd;
       --btn-paypal-text: #ffffff;
@@ -129,7 +134,6 @@
       z-index: 9999;
     }
 
-    /* LARGEUR DE BASE À 600PX */
     .app-container {
       width: 100%;
       max-width: 600px;
@@ -199,7 +203,6 @@
       justify-content: space-between;
     }
 
-    /* HERO BLOC */
     .fcf-hero-card {
       background: linear-gradient(135deg, var(--card-bg) 0%, rgba(163, 113, 247, 0.09) 100%);
       border: 1px solid var(--accent-purple);
@@ -244,7 +247,6 @@
     }
     .hero-rewards-toggle-row.has-rewards { display: flex; }
 
-    /* BOUTON VOIR / MASQUER : NEUTRE DE BASE, VERT AU SURVOL */
     .rewards-toggle-btn {
       background: var(--bg-color);
       border: 1px solid var(--border-color);
@@ -281,7 +283,6 @@
       }
     }
 
-    /* BADGES DE RÉCOMPENSE : CONTOUR VERT, TEXTE EN BLANC */
     .corp-reward-pill {
       display: inline-flex;
       align-items: center;
@@ -428,7 +429,7 @@
       color: var(--accent-purple);
     }
 
-	select option {
+    select option {
       background-color: #161b22;
       color: #f0f6fc;
     }
@@ -465,7 +466,19 @@
       padding: 10px 14px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold;
       display: inline-flex; align-items: center; justify-content: center; gap: 6px; box-sizing: border-box; transition: 0.2s;
     }
-    button.btn-reset:hover { background-color: var(--accent-red); color: black; }
+    button.btn-reset:hover { background-color: var(--accent-red); color: white; }
+
+    .backup-warning-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; background-color: #F0883E; color: #ffffff;
+      border-radius: 50%; font-size: 0.75rem; font-weight: bold; cursor: pointer;
+      margin-left: 6px; animation: pulse-warning 2s infinite;
+    }
+    @keyframes pulse-warning {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+      100% { transform: scale(1); }
+    }
 
     .horizon-selector { display: flex; gap: 6px; background: var(--bg-color); border: 1px solid var(--border-color); padding: 4px; border-radius: 8px; }
     .horizon-btn { flex: 1; padding: 8px; background: none; border: none; color: var(--text-main); font-weight: 700; font-size: 0.78rem; border-radius: 6px; cursor: pointer; }
@@ -506,7 +519,6 @@
     }
     .btn-mini-celebrate:hover { transform: scale(1.15); border-color: var(--accent-purple); }
 
-    /* MODALES */
     .modal-overlay {
       display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.85); z-index: 100; align-items: center; justify-content: center; padding: 12px;
@@ -518,41 +530,29 @@
       position: relative;
     }
 
-    /* ÉCOSYSTÈME */
     .link-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 14px;
-      background-color: var(--bg-color);
-      color: var(--accent-purple);
-      text-align: center;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: bold;
-      border: 1px solid var(--border-color);
-      cursor: pointer;
-      box-sizing: border-box;
-      transition: border-color 0.2s ease, color 0.2s ease;
+      display: flex; align-items: center; justify-content: center; width: 100%; padding: 12px;
+      background-color: var(--bg-color); color: var(--accent-purple); text-align: center; text-decoration: none;
+      border-radius: 6px; font-size: 0.95rem; font-weight: bold; border: 1px solid var(--border-color); cursor: pointer;
+      box-sizing: border-box; transition: border-color 0.2s ease, color 0.2s ease;
     }
-
-    .link-btn:hover {
-      border-color: var(--accent-purple);
-      color: var(--text-bright);
-    }
+    .link-btn:hover { border-color: var(--accent-purple); color: var(--text-bright); }
+    .link-btn-blue { color: var(--accent-blue) !important; }
+    .link-btn-blue:hover { border-color: var(--accent-blue) !important; color: var(--text-bright) !important; }
+    .link-btn-orange { color: var(--accent-orange) !important; }
+    .link-btn-orange:hover { border-color: var(--accent-orange) !important; color: var(--text-bright) !important; }
+    .link-btn-yellow { color: var(--accent-yellow) !important; }
+    .link-btn-yellow:hover { border-color: var(--accent-yellow) !important; color: var(--text-bright) !important; }
     .link-btn-paypal { background-color: var(--btn-paypal-bg) !important; color: var(--btn-paypal-text) !important; }
+
     .site-footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.75rem; color: var(--text-main); opacity: 0.75; display: flex; flex-direction: column; gap: 8px; line-height: 1.4; }
   
-    /* Scrollbars */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-color); border-radius: 4px; }
     ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; transition: background 0.2s ease; }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent-purple); }
     * { scrollbar-width: thin; scrollbar-color: var(--border-color) var(--bg-color); } 
 	
-    /* Masquer spin buttons */
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     input[type="number"] { -moz-appearance: textfield; }
@@ -560,11 +560,11 @@
     .ticker-pill {
       cursor: pointer;
       padding: 4px 12px;
-      border-radius: 20px; /* Forme ovale */
+      border-radius: 20px;
       font-size: 0.75rem;
-      font-weight: 800; /* Texte en gras */
+      font-weight: 800;
       color: var(--accent-purple);
-      background: var(--bg-color); /* Fond noir / neutre */
+      background: var(--bg-color);
       border: none;
       transition: transform 0.2s ease, opacity 0.2s ease;
       user-select: none;
@@ -573,7 +573,7 @@
       line-height: 1.2;
     }
     .ticker-pill:hover {
-      transform: translateY(-2px); /* Léger mouvement au survol */
+      transform: translateY(-2px);
       opacity: 0.85;
     }
 	
@@ -589,81 +589,79 @@
       color: var(--text-bright) !important;
     }
 	
-	/* Boutons déclencheurs du sélecteur de période */
-.period-picker-btn {
-  background-color: var(--bg-color);
-  border: 1px solid var(--border-color);
-  color: var(--text-bright);
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-weight: 700;
-  font-size: 0.88rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  transition: border-color 0.2s;
-}
-.period-picker-btn:hover {
-  border-color: var(--accent-purple);
-}
+    .period-picker-btn {
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-bright);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+    .period-picker-btn:hover {
+      border-color: var(--accent-purple);
+    }
 
-/* Grilles dans la modale */
-.picker-years-grid {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-  margin-bottom: 12px;
-}
-.picker-year-chip {
-  padding: 6px 14px;
-  background: var(--bg-color);
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
-  color: var(--text-main);
-  font-weight: 700;
-  font-size: 0.85rem;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.picker-year-chip.active {
-  background: var(--accent-purple);
-  color: #fff;
-  border-color: var(--accent-purple);
-}
+    .picker-years-grid {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .picker-year-chip {
+      padding: 6px 14px;
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .picker-year-chip.active {
+      background: var(--accent-purple);
+      color: #fff;
+      border-color: var(--accent-purple);
+    }
 
-.picker-months-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-.picker-month-card {
-  background: var(--bg-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 12px 6px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: var(--text-bright);
-  cursor: pointer;
-  transition: background-color 0.15s, border-color 0.15s;
-}
-.picker-month-card:hover {
-  border-color: var(--accent-purple);
-}
-.picker-month-card.active {
-  background: rgba(163, 113, 247, 0.2);
-  border-color: var(--accent-purple);
-  color: var(--accent-purple);
-}
-.picker-month-card.disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-  border-color: transparent;
-}
+    .picker-months-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .picker-month-card {
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px 6px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text-bright);
+      cursor: pointer;
+      transition: background-color 0.15s, border-color 0.15s;
+    }
+    .picker-month-card:hover {
+      border-color: var(--accent-purple);
+    }
+    .picker-month-card.active {
+      background: rgba(163, 113, 247, 0.2);
+      border-color: var(--accent-purple);
+      color: var(--accent-purple);
+    }
+    .picker-month-card.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      border-color: transparent;
+    }
   </style>
 </head>
 <body>
@@ -677,8 +675,8 @@
         KLON <span>CORP.</span>
       </a>
     </h1>
-    <div class="subtitle" data-i18n="subtitle"></div>
-    <p class="description" data-i18n="desc"></p>
+    <div class="subtitle" data-i18n="subtitle">Simulateur de Capacité Financière</div>
+    <p class="description" data-i18n="desc">Renseigne tes revenus bruts et tes charges d'exploitation mensuelles pour maximiser ta trésorerie et ton Free Cash-Flow</p>
   </header>
 
   <nav>
@@ -800,24 +798,21 @@
           <input type="number" id="in-hours" placeholder="0" step="1" oninput="onHoursInputChanged()" onkeydown="if(event.key==='Enter') addMonthlyRecord()">
         </div>
 
-        <!-- 6. CASE À COCHER DÉCOCHE/RECOCHE AUTO -->
         <div class="field-group" style="justify-content: flex-end; padding-bottom: 10px;">
           <label style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; color: var(--text-bright); user-select: none;">
             <input type="checkbox" id="chk-memo-hours" onchange="onToggleMemoHours(this.checked)" style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent-purple);">
-            <span data-i18n="chk_memo_hours"></span>
+            <span data-i18n="chk_memo_hours">Mémoriser</span>
           </label>
         </div>
-
       </div>
 	
 	  <button id="btn-save" class="btn-primary" style="margin-top: 10px; width: 100%;" onclick="addMonthlyRecord()" data-i18n="btn_save">Clôturer le Mois</button>
-
     </div>
 
     <!-- HISTORIQUE D'EXPLOITATION -->
     <div class="card">
       <div class="card-title">
-        <span data-i18n="history_title"></span>
+        <span data-i18n="history_title">📜 Historique</span>
         <span id="history-count-badge" style="font-size:0.75rem; opacity:0.6;">0 mois</span>
       </div>
       <div id="records-list" style="max-height: 300px; overflow-y: auto; padding-right: 2px;"></div>
@@ -825,14 +820,19 @@
 
     <!-- GESTION DES DONNÉES EN BAS -->
     <div class="card">
-      <div class="card-title" data-i18n="data_mgmt">💾 Gestion des Données</div>
+      <div class="card-title">
+        <div style="display: inline-flex; align-items: center;">
+          <span data-i18n="data_mgmt">💾 Gestion des Données</span>
+          <span id="backup-warning" class="backup-warning-badge" style="display: none;" onclick="showBackupWarningInfo()" title="Modifications non sauvegardées">!</span>
+        </div>
+      </div>
       <div style="display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap;">
         <button class="btn-secondary" style="flex: 1; min-width: 90px;" onclick="exportJSON()" data-i18n="btn_export">💾 Exporter</button>
         <label class="btn-secondary" style="flex: 1; min-width: 90px;">
           <span data-i18n="btn_import">📂 Importer</span>
           <input type="file" accept=".json" style="display: none;" onchange="importJSON(event)">
         </label>
-        <button class="btn-reset" style="flex: 1; min-width: 110px;" onclick="confirmResetDialog()" data-i18n="btn_reset">🗑️ Réinitialiser</button>
+        <button class="btn-reset" style="flex: 1; min-width: 110px;" onclick="confirmResetDialog()" data-i18n="btn_reset">Réinitialiser</button>
       </div>
     </div>
   </div>
@@ -850,7 +850,7 @@
         </div>
         <div class="hero-box hero-box-right">
           <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
-            <span class="label" style="color:var(--accent-blue);" data-i18n="hero_annuity"></span>
+            <span class="label" style="color:var(--accent-blue);" data-i18n="hero_annuity">RENTE PASSIVE CRÉÉE</span>
             <button class="tooltip-btn" onclick="openAnnuityHelpModal()" style="color:var(--accent-blue); border-color:var(--accent-blue);" title="Explication règle des 4%">?</button>
           </div>
           <div class="val" id="hero-annuity-val" style="color:var(--accent-blue);">+0 € / mois</div>
@@ -872,8 +872,8 @@
     <!-- CARTE PONT AVEC KLON -->
     <div class="card" style="border-left: 4px solid var(--accent-purple);">
       <div class="card-title">
-        <span data-i18n="card_fuel_title"></span>
-        <button class="btn-secondary" style="padding: 4px 8px; font-size: 0.75rem;" onclick="openHistoryModal()" data-i18n="btn_trajectory"></button>
+        <span data-i18n="card_fuel_title">⛽ Carburant KLON</span>
+        <button class="btn-secondary" style="padding: 4px 8px; font-size: 0.75rem;" onclick="openHistoryModal()" data-i18n="btn_trajectory">🧭 Trajectoire</button>
       </div>
   
       <div class="fuel-card-content">
@@ -926,9 +926,9 @@
     <!-- SÉLECTEURS DE PÉRIODE & HORIZON -->
     <div class="card" style="padding: 10px;">
       <div class="horizon-selector">
-        <button class="horizon-btn active" onclick="setHorizon('monthly', event)" data-i18n="hz_monthly"></button>
-        <button class="horizon-btn" onclick="setHorizon('quarterly', event)" data-i18n="hz_quarterly"></button>
-        <button class="horizon-btn" onclick="setHorizon('annual', event)" data-i18n="hz_annual"></button>
+        <button class="horizon-btn active" onclick="setHorizon('monthly', event)" data-i18n="hz_monthly">📅 Mensuel</button>
+        <button class="horizon-btn" onclick="setHorizon('quarterly', event)" data-i18n="hz_quarterly">🗓️ Trimestriel</button>
+        <button class="horizon-btn" onclick="setHorizon('annual', event)" data-i18n="hz_annual">🚀 Annuel</button>
       </div>
     </div>
 
@@ -988,7 +988,7 @@
 
   </div>
 
-  <!-- ONGLET 3 : ÉCOSYSTÈME -->
+  <!-- ONGLET 3 : ÉCOSYSTÈME UNIFIÉ -->
   <div class="tab-content" id="tab3">
     <div class="card" style="border-left: 4px solid var(--accent-purple);">
       <div style="font-size: 0.85rem; line-height: 1.5; color: var(--text-main);" data-i18n="tab3_disclaimer">
@@ -1016,17 +1016,26 @@
     </div>
 
     <div class="card">
-      <div class="card-title" data-i18n="tab3_portfolio_title"></div>
+      <div class="card-title" data-i18n="tab3_portfolio_title">🎯 Portefeuille & Performances</div>
       <a href="https://dub.sh/klon-wikifolio" target="_blank" rel="noopener noreferrer" class="link-btn" data-i18n="tab3_wikifolio_btn">Suivre le Wikifolio Alpha Picker</a>
     </div>
 
     <div class="card">
-      <div class="card-title" data-i18n="tab3_analysis_title"></div>
+      <div class="card-title" data-i18n="tab3_analysis_title">🔬 Analyses & Thèses</div>
       <a href="https://dub.sh/klon-substack" target="_blank" rel="noopener noreferrer" class="link-btn" data-i18n="tab3_substack_btn">Suivre le Substack Alpha Picker</a>
     </div>
 
     <div class="card">
-      <div class="card-title" data-i18n="tab3_support_title">Soutenir le Projet</div>
+      <div class="card-title" data-i18n="eco_suite">🧰 La Suite KLON</div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <a href="https://alphapicker.github.io/klon/" target="_blank" rel="noopener noreferrer" class="link-btn link-btn-blue">KLON — Simulateur de liberté financière</a>
+        <a href="https://alphapicker.github.io/klon-stake/" target="_blank" rel="noopener noreferrer" class="link-btn link-btn-orange">KLON Stake — Simulateur de propriété réelle</a>
+        <a href="https://alphapicker.github.io/klon-pulse/" target="_blank" rel="noopener noreferrer" class="link-btn link-btn-yellow">KLON Pulse — Simulateur de transmission vivante</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" data-i18n="tab3_support_title">☕ Soutenir le Projet</div>
       <p style="font-size: 0.9rem; line-height: 1.4;" data-i18n="tab3_support_desc">
         Si cet outil vous aide dans votre gestion de trésorerie et d'autonomie financière, vous pouvez soutenir le projet via les liens ci-dessus ou par un don.
       </p>
@@ -1047,7 +1056,7 @@
   </footer>
 </div>
 
-<!-- MODALE MULTIPLE IA -->
+<!-- MODALES -->
 <div id="ai-multiple-modal" class="modal-overlay">
   <div class="modal-card" style="max-width: 400px; text-align: left;">
     <div style="display: flex; align-items: center; gap: 8px;">
@@ -1071,7 +1080,6 @@
   </div>
 </div>
 
-<!-- MODALE STATUT BOURSIER -->
 <div id="rank-modal" class="modal-overlay">
   <div class="modal-card" style="max-width: 420px; text-align: left;">
     <div style="display: flex; align-items: center; gap: 8px;">
@@ -1093,13 +1101,11 @@
   </div>
 </div>
 
-<!-- MODALE HISTORIQUE & COURBES BILINGUE -->
 <div id="history-modal" class="modal-overlay">
   <div class="modal-card" style="max-height: 90vh; overflow-y: auto; gap: 10px;">
     
     <div class="card-title" style="margin-bottom: 0;" data-i18n="modal_traj_title">🧭 Trajectoire & Rendement</div>
     
-    <!-- 1. GRAPHIQUE TRÉSORERIE CUMULÉE (ICÔNE BANQUE UNIQUE) -->
     <div style="background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 4px;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <span style="font-size: 0.78rem; font-weight: 800; color: var(--accent-green-bright);" data-i18n="chart_cumul_title">🏦 Trésorerie Cumulée</span>
@@ -1114,18 +1120,17 @@
       </div>
     </div>
 
-    <!-- 2. GRAPHIQUE RENDEMENT HORAIRE (ICÔNE CHRONO UNIQUE) -->
     <div style="background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 4px;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-size: 0.78rem; font-weight: 800; color: var(--accent-blue);" data-i18n="chart_hourly_title"></span>
+        <span style="font-size: 0.78rem; font-weight: 800; color: var(--accent-blue);" data-i18n="chart_hourly_title">⏱️ Taux FCF/h</span>
         <span id="hourly-hover-label" style="font-size: 0.7rem; color: var(--accent-blue); font-weight: 700;" data-i18n="chart_hover_default">Survolez les points</span>
       </div>
       <div style="height: 125px; width: 100%;">
         <svg id="hourly-chart-svg" width="100%" height="100%" viewBox="0 0 500 125" style="overflow: visible;"></svg>
       </div>
       <div style="display: flex; justify-content: space-between; font-size: 0.72rem; border-top: 1px dashed var(--border-color); padding-top: 4px; margin-top: 2px;">
-        <span><span data-i18n="lbl_avg_hourly"></span> <strong id="modal-avg-hourly" style="color:var(--accent-blue);">0,00 €/h</strong></span>
-        <span><span data-i18n="lbl_best_hourly"></span> <strong id="modal-best-hourly" style="color: #e3b341; cursor: pointer; display: inline-block;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" onclick="showRecordDetail('hourly')" title="Cliquer pour voir la date">0,00 €/h</strong></span>
+        <span><span data-i18n="lbl_avg_hourly">Moyenne :</span> <strong id="modal-avg-hourly" style="color:var(--accent-blue);">0,00 €/h</strong></span>
+        <span><span data-i18n="lbl_best_hourly">Meilleur taux :</span> <strong id="modal-best-hourly" style="color: #e3b341; cursor: pointer; display: inline-block;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" onclick="showRecordDetail('hourly')" title="Cliquer pour voir la date">0,00 €/h</strong></span>
       </div>
     </div>
 
@@ -1133,7 +1138,6 @@
   </div>
 </div>
 
-<!-- MODALE TICKER -->
 <div id="ticker-modal" class="modal-overlay">
   <div class="modal-card" style="max-width: 360px; text-align: center;">
     <div style="font-size: 2.4rem; line-height: 1;">🏛️</div>
@@ -1153,7 +1157,6 @@
   </div>
 </div>
 
-<!-- MODALE RÈGLE DES 4% -->
 <div id="annuity-help-modal" class="modal-overlay">
   <div class="modal-card" style="max-width: 420px; text-align: left;">
     <div style="display: flex; align-items: center; gap: 8px;">
@@ -1173,7 +1176,6 @@
   </div>
 </div>
 
-<!-- MODALE RÉCOMPENSE -->
 <div id="corp-reward-modal" class="modal-overlay">
   <div class="modal-card" style="text-align: center; max-width: 360px;">
     <button class="btn-mini-celebrate" onclick="replayRewardAnimation()" data-i18n-title="replay_anim_title">🎆</button>
@@ -1185,7 +1187,6 @@
   </div>
 </div>
 
-<!-- MODALE RENDEMENT ET TEMPS (HEURES TRAVAILLÉES) -->
 <div id="hours-modal" class="modal-overlay">
   <div class="modal-card" style="max-width: 440px; text-align: left;">
     <div style="display: flex; align-items: center; gap: 8px;">
@@ -1194,7 +1195,6 @@
     </div>
 
     <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px;">
-      
       <div class="diag-grid">
         <div class="diag-item">
           <div class="diag-title" data-i18n="diag_hourly_net">Taux Horaire Net</div>
@@ -1219,14 +1219,12 @@
           Chaque heure travaillée produit de la trésorerie disponible pour financer tes Klons d'autonomie.
         </div>
       </div>
-
     </div>
 
     <button class="btn-primary" onclick="closeHoursModal()" style="margin-top: 8px; width: 100%;" data-i18n="btn_close">Fermer</button>
   </div>
 </div>
 
-<!-- MODAL DIALOGUE SYSTÈME / NOTIFICATIONS -->
 <div id="custom-dialog-modal" class="modal-overlay" style="z-index: 200;">
   <div class="modal-card" style="max-width: 360px; text-align: center;">
     <div style="font-size: 2.6rem; line-height: 1;" id="dialog-icon">ℹ️</div>
@@ -1239,7 +1237,6 @@
   </div>
 </div>
 
-<!-- MODALE SÉLECTEUR DE PÉRIODE (CALENDRIER SOMBRE) -->
 <div id="period-picker-modal" class="modal-overlay">
   <div class="modal-card" style="max-width: 380px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
@@ -1247,10 +1244,7 @@
       <button onclick="closePeriodModal()" style="background:none; border:none; color:var(--text-main); font-size:1.2rem; cursor:pointer;">✕</button>
     </div>
 
-    <!-- Années -->
     <div class="picker-years-grid" id="picker-years-list"></div>
-
-    <!-- Grille des 12 mois -->
     <div class="picker-months-grid" id="picker-months-list"></div>
 
     <button class="btn-secondary" onclick="closePeriodModal()" style="margin-top: 10px; width: 100%; padding: 8px;">Annuler</button>
@@ -1258,7 +1252,7 @@
 </div>
 
 <script>
-  /* DICTIONNAIRE BILINGUE (I18N) */
+  /* DICTIONNAIRE BILINGUE (I18N) NETTOYÉ */
   const I18N = {
     FR: {
       subtitle: "Simulateur de Capacité Financière",
@@ -1302,7 +1296,7 @@
       data_mgmt: "💾 Gestion des Données",
       btn_export: "💾 Exporter",
       btn_import: "📂 Importer",
-      btn_reset: "🗑️ Réinitialiser",
+      btn_reset: "Réinitialiser",
 
       hero_fcf: "FCF DISPONIBLE",
       hero_margin_sub: "Marge Nette : {val} %",
@@ -1317,7 +1311,7 @@
       lbl_total_cash: "Trésorerie Cumulée :",
       lbl_total_annuity: "Rente Passive Totale :",
 	  
-	  chk_memo_hours: "Mémoriser",
+	    chk_memo_hours: "Mémoriser",
       btn_trajectory: "🧭 Trajectoire",
       modal_traj_title: "🧭 Trajectoire & Rendement",
       chart_cumul_title: "🏦 Trésorerie Cumulée",
@@ -1402,11 +1396,12 @@
       tab3_disclaimer: "<strong>🤝 Transparence & Parrainage :</strong> Les liens ci-dessous sont des liens d'affiliation et de parrainage. En ouvrant un compte via ces accès, vous pouvez bénéficier des bonus de bienvenue proposés par les plateformes tout en soutenant le développement gratuit de l'application.",
       tab3_banks_title: "📈 Banques & Courtiers",
       tab3_crypto_title: "🪙 Crypto & Rendement Alternatif",
-      tab3_portfolio_title: "Portefeuille & Performances",
+      tab3_portfolio_title: "🎯 Portefeuille & Performances",
       tab3_wikifolio_btn: "Suivre le Wikifolio Alpha Picker",
-      tab3_analysis_title: "Analyses & Thèses",
+      tab3_analysis_title: "🔬 Analyses & Thèses",
       tab3_substack_btn: "Suivre le Substack Alpha Picker",
-      tab3_support_title: "Soutenir le Projet",
+      eco_suite: "🧰 La Suite KLON",
+      tab3_support_title: "☕ Soutenir le Projet",
       tab3_support_desc: "Si cet outil vous aide dans votre gestion de trésorerie et d'autonomie financière, vous pouvez soutenir le projet via les liens ci-dessus ou par un don.",
       tab3_paypal_btn: "Faire un don via PayPal",
 
@@ -1446,12 +1441,14 @@
       import_success: "Données importées avec succès !",
       import_invalid: "Fichier JSON invalide.",
       import_error: "Erreur lors de la lecture du fichier JSON.",
-	  export_title: "Exportation réussie !",
+      export_title: "Exportation réussie",
       export_note: "Note : Si vous utilisez aussi KLON et KLON-STAKE, pensez à les exporter séparément. Les sauvegardes sont distinctes.",
-	  discover_klon: "👉 Découvrir KLON",
-	  discover_klon_stake: "👉 Découvrir KLON STAKE",
+      discover_klon: "👉 Découvrir KLON",
+      discover_klon_stake: "👉 Découvrir KLON STAKE",
       reset_confirm: "Es-tu sûr de vouloir tout réinitialiser à zéro ? Toutes les données et l'historique d'exploitation seront effacés.",
       fortuneo_copied: "✅ Code copié ! Redirection...",
+      backup_unsaved_title: "Sauvegarde Recommandée",
+      backup_unsaved_msg: "De nouvelles modifications ont été enregistrées localement dans ton navigateur, mais n'ont pas encore été exportées en fichier JSON de sauvegarde.",
 
       ai_init_std: "Initialisation standard (12x)",
       ai_reason_margin_45: "Rentabilité Exceptionnelle (45%+)",
@@ -1526,7 +1523,7 @@
       data_mgmt: "💾 Data Management",
       btn_export: "💾 Export",
       btn_import: "📂 Import",
-      btn_reset: "🗑️ Reset",
+      btn_reset: "Reset",
 
       hero_fcf: "AVAILABLE FCF",
       hero_margin_sub: "Net Margin: {val} %",
@@ -1541,7 +1538,7 @@
       lbl_total_cash: "Cumulative Treasury:",
       lbl_total_annuity: "Total Passive Income:",
 	  
-	  chk_memo_hours: "Remember",
+	    chk_memo_hours: "Remember",
       btn_trajectory: "🧭 Trajectory",
       modal_traj_title: "🧭 Trajectory & Yield",
       chart_cumul_title: "🏦 Cumulative Treasury",
@@ -1626,11 +1623,12 @@
       tab3_disclaimer: "<strong>🤝 Transparency & Referral:</strong> The links below are affiliate and referral links. Opening an account through these links allows you to benefit from welcome bonuses while supporting free development.",
       tab3_banks_title: "📈 Banks & Brokers",
       tab3_crypto_title: "🪙 Crypto & Alternative Yield",
-      tab3_portfolio_title: "Portfolio & Performance",
+      tab3_portfolio_title: "🎯 Portfolio & Performance",
       tab3_wikifolio_btn: "Follow Alpha Picker Wikifolio",
-      tab3_analysis_title: "Analysis & Theses",
+      tab3_analysis_title: "🔬 Analysis & Theses",
       tab3_substack_btn: "Follow Alpha Picker Substack",
-      tab3_support_title: "Support the Project",
+      eco_suite: "🧰 KLON Suite",
+      tab3_support_title: "☕ Support the Project",
       tab3_support_desc: "If this tool helps you manage your treasury and financial autonomy, you can support the project via the links above or through a donation.",
       tab3_paypal_btn: "Donate via PayPal",
 
@@ -1670,12 +1668,14 @@
       import_success: "Data successfully imported!",
       import_invalid: "Invalid JSON file.",
       import_error: "Error reading JSON file.",
-	  export_title: "Successful Export!",
+      export_title: "Export Successful",
       export_note: "Note: If you also use KLON and KLON-STAKE, remember to export them separately. Backups are distinct.",
-	  discover_klon: "👉 Discover KLON",
-	  discover_klon_stake: "👉 Discover KLON STAKE",
+      discover_klon: "👉 Discover KLON",
+      discover_klon_stake: "👉 Discover KLON STAKE",
       reset_confirm: "Are you sure you want to reset everything? All data and operating history will be deleted.",
       fortuneo_copied: "✅ Code copied! Redirecting...",
+      backup_unsaved_title: "Unsaved Changes",
+      backup_unsaved_msg: "New entries or updates have been saved in your browser, but not exported to a JSON file yet.",
 
       ai_init_std: "Standard Initialization (12x)",
       ai_reason_margin_45: "Exceptional Profitability (45%+)",
@@ -1767,6 +1767,7 @@
       currency: '€',
       lang: 'FR',
       theme: 'dark',
+      hasUnsavedChanges: false,
       everUnlockedRewards: [],
       records: [] 
     };
@@ -1777,11 +1778,29 @@
   if (!db.lang) db.lang = 'FR';
   if (!db.theme) db.theme = 'dark';
   if (db.ticker === undefined) db.ticker = '';
+  if (db.hasUnsavedChanges === undefined) db.hasUnsavedChanges = false;
   if (!Array.isArray(db.everUnlockedRewards)) {
     db.everUnlockedRewards = Array.isArray(db.everUnlockedBadges) ? db.everUnlockedBadges : [];
   }
 
   function saveData() { localStorage.setItem('corp_db', JSON.stringify(db)); }
+
+  function updateBackupWarningUI() {
+    const badge = document.getElementById('backup-warning');
+    if (badge) {
+      badge.style.display = db.hasUnsavedChanges ? 'inline-flex' : 'none';
+    }
+  }
+
+  function markUnsavedChanges() {
+    db.hasUnsavedChanges = true;
+    saveData();
+    updateBackupWarningUI();
+  }
+
+  function showBackupWarningInfo() {
+    showCustomDialog('💾', t('backup_unsaved_title'), t('backup_unsaved_msg'));
+  }
   
   function fmt(v) { 
     const locale = (db.lang === 'EN') ? 'en-US' : 'fr-FR';
@@ -1812,10 +1831,13 @@
   }
 
   function saveCompanyName() {
-    db.companyName = document.getElementById('company-name-input').value.trim();
-    saveData();
-    updateAppHeader();
-    if (document.getElementById('tab2').classList.contains('active')) renderStockReport();
+    const newName = document.getElementById('company-name-input').value.trim();
+    if (db.companyName !== newName) {
+      db.companyName = newName;
+      markUnsavedChanges();
+      updateAppHeader();
+      if (document.getElementById('tab2').classList.contains('active')) renderStockReport();
+    }
   }
 
   function initPeriodNavigator() {
@@ -1887,7 +1909,6 @@
       document.getElementById('in-frais').value = '';
       document.getElementById('in-charges').value = '';
 
-      // Si l'option est active, on remet les heures mémorisées et la coche
       if (db.rememberHours && db.defaultHours) {
         document.getElementById('in-hours').value = db.defaultHours;
         if (chk) chk.checked = true;
@@ -1943,7 +1964,6 @@
     if (el) el.classList.toggle('active');
   }
   
-  // Si l'utilisateur tape un autre chiffre, ça décoche automatiquement !
   function onHoursInputChanged() {
     const val = parseFloat(document.getElementById('in-hours').value);
     const chk = document.getElementById('chk-memo-hours');
@@ -1959,13 +1979,12 @@
     }
   }
 
-  // Si on recoche, ça mémorise immédiatement le nouveau chiffre tapé
   function onToggleMemoHours(isChecked) {
     db.rememberHours = isChecked;
     if (isChecked) {
       const hVal = parseFloat(document.getElementById('in-hours').value);
       if (!isNaN(hVal) && hVal > 0) {
-        db.defaultHours = hVal; // Enregistre le nouveau standard !
+        db.defaultHours = hVal;
       } else {
         db.defaultHours = db.defaultHours || 152;
         document.getElementById('in-hours').value = db.defaultHours;
@@ -1990,7 +2009,7 @@
     else db.records.push(rec);
 
     db.records.sort((a, b) => a.month.localeCompare(b.month));
-    saveData();
+    markUnsavedChanges();
     updatePeriodDisplay();
     renderRecordsList();
     updateAppHeader();
@@ -2006,11 +2025,20 @@
 
   function deleteRecord(month, e) {
     if (e) e.stopPropagation();
-    db.records = db.records.filter(r => r.month !== month);
-    saveData();
-    updatePeriodDisplay();
-    renderRecordsList();
-    updateAppHeader();
+
+    const isEn = db.lang === 'EN';
+    const title = isEn ? 'Confirm Deletion' : 'Confirmer la suppression';
+    const msg = isEn 
+      ? `Are you sure you want to delete the operating record for <strong>${month}</strong>?`
+      : `Es-tu sûr de vouloir supprimer l'historique de clôture du mois <strong>${month}</strong> ?`;
+
+    showCustomDialog('🗑️', title, msg, true, () => {
+      db.records = db.records.filter(r => r.month !== month);
+      markUnsavedChanges();
+      updatePeriodDisplay();
+      renderRecordsList();
+      updateAppHeader();
+    }, isEn ? 'Delete' : 'Supprimer');
   }
 
   function selectRowForEdit(m) {
@@ -2049,7 +2077,7 @@
                <strong style="color:${fcf >= 0 ? 'var(--accent-green-bright)' : 'var(--accent-red)'}; font-size: 0.95rem; white-space: nowrap;">
                  FCF: ${fmt(fcf)}
                </strong>
-                <button class="btn-danger" onclick="deleteRecord('${r.month}', event)" style="padding: 2px 6px; font-size: 0.75rem;">✕</button>
+                <button class="btn-danger" onclick="deleteRecord('${r.month}', event)" style="padding: 2px 6px; font-size: 0.75rem;" title="Supprimer">✕</button>
             </div>
           </div>
           <div style="font-size: 0.72rem; opacity: 0.65; display: flex; gap: 6px; flex-wrap: wrap; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 4px;">
@@ -2083,14 +2111,13 @@
     return true;
   }
 
-  let activePickerTarget = 'curr'; // 'curr' ou 'prev'
+  let activePickerTarget = 'curr';
   let pickerSelectedYear = activeYear;
 
   function openPeriodModal(target) {
     if (db.records.length === 0) return;
     activePickerTarget = target;
     
-    // Déterminer l'année sélectionnée actuellement
     const currentVal = (target === 'curr') 
       ? document.getElementById('txt-curr-period').getAttribute('data-value')
       : document.getElementById('txt-prev-period').getAttribute('data-value');
@@ -2111,104 +2138,6 @@
     document.body.style.overflow = '';
   }
 
-  function renderPickerModalContent() {
-    const yearsBox = document.getElementById('picker-years-list');
-    const monthsBox = document.getElementById('picker-months-list');
-    const monthList = (db.lang === 'EN') ? monthNamesEN : monthNamesFR;
-
-    // Récupération de la valeur de l'autre bouton pour interdire les dates >= ou <=
-    const currVal = document.getElementById('txt-curr-period').getAttribute('data-value');
-    const prevVal = document.getElementById('txt-prev-period').getAttribute('data-value');
-
-    // 1. Liste des années enregistrées
-    const availableYears = [...new Set(db.records.map(r => parseInt(r.month.slice(0, 4), 10)))].sort((a,b) => a - b);
-    if (!availableYears.includes(pickerSelectedYear) && availableYears.length > 0) {
-      pickerSelectedYear = availableYears[availableYears.length - 1];
-    }
-
-    yearsBox.innerHTML = availableYears.map(y => `
-      <div class="picker-year-chip ${y === pickerSelectedYear ? 'active' : ''}" onclick="selectPickerYear(${y})">${y}</div>
-    `).join('');
-
-    // 2. Grille des mois/trimestres/années
-    monthsBox.innerHTML = '';
-    for (let m = 1; m <= 12; m++) {
-      const mm = m < 10 ? '0' + m : '' + m;
-      const periodKey = `${pickerSelectedYear}-${mm}`;
-      const hasData = db.records.some(r => r.month === periodKey);
-      const shortName = monthList[m - 1].slice(0, 4) + '.';
-
-      if (currentHorizon === 'monthly') {
-        const isSelected = (activePickerTarget === 'curr') 
-          ? (currVal === periodKey)
-          : (prevVal === periodKey);
-
-        // Si on choisit la référence N-1, interdire les mois >= au mois analysé (currVal)
-        let isForbidden = false;
-        if (activePickerTarget === 'prev' && currVal) {
-          isForbidden = periodKey >= currVal;
-        }
-
-        const canClick = hasData && !isForbidden;
-
-        monthsBox.innerHTML += `
-          <div class="picker-month-card ${isSelected ? 'active' : ''} ${!canClick ? 'disabled' : ''}" 
-               ${canClick ? `onclick="applyPeriodSelection('${periodKey}')"` : ''}>
-            ${shortName}
-          </div>
-        `;
-      } else if (currentHorizon === 'quarterly') {
-        if (m % 3 === 0) {
-          const qNum = m / 3;
-          const qKey = `${pickerSelectedYear}-Q${qNum}`;
-          const qLabel = (db.lang === 'EN') ? `Q${qNum}` : `T${qNum}`;
-          const isQComplete = isQuarterComplete(qKey);
-          const isSelected = (activePickerTarget === 'curr')
-            ? (currVal === qKey)
-            : (prevVal === qKey);
-
-          // Si on choisit la référence N-1, interdire les trimestres >= au trimestre analysé
-          let isForbidden = false;
-          if (activePickerTarget === 'prev' && currVal) {
-            isForbidden = qKey >= currVal;
-          }
-
-          const canClick = isQComplete && !isForbidden;
-
-          monthsBox.innerHTML += `
-            <div class="picker-month-card ${isSelected ? 'active' : ''} ${!canClick ? 'disabled' : ''}" style="grid-column: span 3; padding: 14px;"
-                 ${canClick ? `onclick="applyPeriodSelection('${qKey}')"` : ''}>
-              ${qLabel} ${pickerSelectedYear} ${!isQComplete ? '(Incomplet)' : ''}
-            </div>
-          `;
-        }
-      } else {
-        if (m === 1) {
-          const yKey = `${pickerSelectedYear}`;
-          const isYComplete = isYearComplete(yKey);
-          const isSelected = (activePickerTarget === 'curr')
-            ? (currVal === yKey)
-            : (prevVal === yKey);
-
-          // Si on choisit la référence N-1, interdire les années >= à l'année analysée
-          let isForbidden = false;
-          if (activePickerTarget === 'prev' && currVal) {
-            isForbidden = yKey >= currVal;
-          }
-
-          const canClick = isYComplete && !isForbidden;
-
-          monthsBox.innerHTML += `
-            <div class="picker-month-card ${isSelected ? 'active' : ''} ${!canClick ? 'disabled' : ''}" style="grid-column: span 3; padding: 16px;"
-                 ${canClick ? `onclick="applyPeriodSelection('${yKey}')"` : ''}>
-              🚀 ${pickerSelectedYear} ${!isYComplete ? '(Incomplète)' : ''}
-            </div>
-          `;
-        }
-      }
-    }
-  }
-
   function applyPeriodSelection(val) {
     const btnCurr = document.getElementById('txt-curr-period');
     const btnPrev = document.getElementById('txt-prev-period');
@@ -2218,7 +2147,6 @@
       btnCurr.setAttribute('data-value', val);
       btnCurr.innerText = (db.lang !== 'EN' && val.includes('-Q')) ? val.replace('-Q', '-T') : val;
 
-      // Auto-sélection intelligente d'une référence inférieure si la référence courante devient invalide (>= val)
       const currentPrev = btnPrev.getAttribute('data-value');
       if (!currentPrev || currentPrev >= val) {
         if (currentHorizon === 'monthly') {
@@ -2269,17 +2197,15 @@
     const currVal = document.getElementById('txt-curr-period').getAttribute('data-value');
     const prevVal = document.getElementById('txt-prev-period').getAttribute('data-value');
 
-    // 1. Liste des années enregistrées
     const availableYears = [...new Set(db.records.map(r => parseInt(r.month.slice(0, 4), 10)))].sort((a,b) => a - b);
     if (!availableYears.includes(pickerSelectedYear) && availableYears.length > 0) {
       pickerSelectedYear = availableYears[availableYears.length - 1];
     }
 
-    // --- MODE ANNUEL : Sélection directe par année (pas de grille de mois) ---
     if (currentHorizon === 'annual') {
-      yearsBox.style.display = 'none'; // On masque les puces d'années du haut
+      yearsBox.style.display = 'none';
       monthsBox.innerHTML = '';
-      monthsBox.style.gridTemplateColumns = '1fr'; // Pleine largeur
+      monthsBox.style.gridTemplateColumns = '1fr';
 
       availableYears.forEach(y => {
         const yKey = `${y}`;
@@ -2304,9 +2230,8 @@
       return;
     }
 
-    // --- MODES MENSUEL & TRIMESTRIEL ---
-    yearsBox.style.display = 'flex'; // On réaffiche le bandeau d'années
-    monthsBox.style.gridTemplateColumns = 'repeat(3, 1fr)'; // Grille 3 colonnes
+    yearsBox.style.display = 'flex';
+    monthsBox.style.gridTemplateColumns = 'repeat(3, 1fr)';
 
     yearsBox.innerHTML = availableYears.map(y => `
       <div class="picker-year-chip ${y === pickerSelectedYear ? 'active' : ''}" onclick="selectPickerYear(${y})">${y}</div>
@@ -2983,15 +2908,18 @@
   }
 
   function saveModalTicker() {
-    db.ticker = document.getElementById('modal-ticker-input').value.trim().toUpperCase();
-    saveData();
-    updateAppHeader();
+    const newTicker = document.getElementById('modal-ticker-input').value.trim().toUpperCase();
+    if (db.ticker !== newTicker) {
+      db.ticker = newTicker;
+      markUnsavedChanges();
+      updateAppHeader();
+    }
     closeTickerModal();
   }
 
   function resetModalTicker() {
     db.ticker = '';
-    saveData();
+    markUnsavedChanges();
     updateAppHeader();
     closeTickerModal();
   }
@@ -3038,7 +2966,6 @@
       return;
     }
 
-    // Helper pour un formatage compact avec 1 décimale (ex: 57,7 k €)
     const fmtCompact = (val) => {
       const absVal = Math.abs(val);
       const sign = val < 0 ? '-' : '';
@@ -3050,13 +2977,11 @@
       return fmt(val);
     };
 
-    // 1. Découpage temporel
     const totalMonths = db.records.length;
     let aggregationMode = 'monthly';
     if (totalMonths > 36) aggregationMode = 'annual';
     else if (totalMonths > 12) aggregationMode = 'quarterly';
 
-    // 2. Agrégation des données
     let cumul = 0;
     let rawSeries = [];
     let fcfList = [];
@@ -3100,13 +3025,11 @@
       }));
     }
 
-    // Statistiques Trésorerie
     const avgFcf = fcfList.reduce((a, b) => a + b, 0) / fcfList.length;
     const bestFcf = Math.max(...fcfList);
     document.getElementById('modal-avg-fcf').innerText = fmt(avgFcf);
     document.getElementById('modal-best-fcf').innerText = fmt(bestFcf);
 
-    // Statistiques Rendement Horaire
     const allHourly = rawSeries.map(s => s.hours > 0 ? (s.fcf / s.hours) : 0);
     const avgHourly = rawSeries.reduce((acc, s) => acc + s.fcf, 0) / Math.max(1, rawSeries.reduce((acc, s) => acc + s.hours, 0));
     const bestHourly = Math.max(...allHourly);
@@ -3115,15 +3038,11 @@
     document.getElementById('modal-avg-hourly').innerText = fmtH(avgHourly);
     document.getElementById('modal-best-hourly').innerText = fmtH(bestHourly);
 
-    // Dimensions graphiques
     const padLeft = 60, padRight = 20, padTop = 15, padBottom = 20;
     const width = 500 - padLeft - padRight;
     const height = 125 - padTop - padBottom;
     const numLocale = (db.lang === 'EN') ? 'en-US' : 'fr-FR';
 
-    // ==========================================
-    // 🟢 TRACÉ 1 : TRÉSORERIE CUMULÉE (EN VERT)
-    // ==========================================
     const minCumul = Math.min(0, ...series.map(s => s.cumul));
     const maxCumul = Math.max(1000, ...series.map(s => s.cumul));
     const getYCumul = val => padTop + height - ((val - minCumul) / (maxCumul - minCumul || 1)) * height;
@@ -3170,9 +3089,6 @@
       svgCumul.appendChild(circle);
     });
 
-    // ==========================================
-    // 🔵 TRACÉ 2 : RENDEMENT HORAIRE (EN BLEU)
-    // ==========================================
     const minHourly = Math.min(0, ...series.map(s => s.hourlyFcf));
     const maxHourly = Math.max(10, Math.ceil(Math.max(...series.map(s => s.hourlyFcf)) * 1.1));
     const getYHourly = val => padTop + height - ((val - minHourly) / (maxHourly - minHourly || 1)) * height;
@@ -3219,6 +3135,7 @@
       svgHourly.appendChild(circle);
     });
   }
+
   function triggerCelebration(type = 'confetti') {
     const canvas = document.getElementById('confetti-canvas');
     if (!canvas) return;
@@ -3331,7 +3248,7 @@
   
   let dialogConfirmCallback = null;
 
-  function showCustomDialog(icon, title, message, isConfirm = false, onConfirm = null) {
+  function showCustomDialog(icon, title, message, isConfirm = false, onConfirm = null, customConfirmLabel = null) {
     document.getElementById('dialog-icon').innerText = icon || 'ℹ️';
     document.getElementById('dialog-title').innerText = title || 'Notification';
     document.getElementById('dialog-message').innerHTML = message || '';
@@ -3340,9 +3257,10 @@
     dialogConfirmCallback = onConfirm;
 
     if (isConfirm) {
+      const confirmText = customConfirmLabel || (db.lang === 'EN' ? 'Confirm' : 'Confirmer');
       btnBox.innerHTML = `
-        <button class="btn-reset" onclick="executeDialogConfirm()" style="flex: 1; padding: 10px;">Confirmer</button>
-        <button class="btn-secondary" onclick="closeCustomDialog()" style="flex: 1; padding: 10px;">Annuler</button>
+        <button class="btn-reset" onclick="executeDialogConfirm()" style="flex: 1; padding: 10px;">${confirmText}</button>
+        <button class="btn-secondary" onclick="closeCustomDialog()" style="flex: 1; padding: 10px;">${t('btn_cancel')}</button>
       `;
     } else {
       btnBox.innerHTML = `
@@ -3367,33 +3285,34 @@
   }
 
   function exportJSON() {
-    const jsonContent = JSON.stringify(db, null, 2);
-    const today = new Date().toISOString().slice(0, 10);
-    
-    const namePart = (db.companyName || '').trim() 
-      ? (db.companyName || '').trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '_')
-      : today;
-      
-    const fileName = `KLON_CORP_${namePart}_backup.json`;
-    const blob = new Blob([jsonContent], { type: 'application/json' });
+      try {
+        const jsonContent = JSON.stringify(db, null, 2);
+        const today = new Date().toISOString().slice(0, 10);
+        const fileName = `KLON_CORP_backup_${today}.json`;
+        const blob = new Blob([jsonContent], { type: 'application/json' });
 
-    const msg = `${t('export_note')}<br><br>` +
-      `<a href="https://alphapicker.github.io/klon/" target="_blank" style="color: var(--accent-blue); font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 4px;">${t('discover_klon')}</a><br>` +
-      `<a href="https://alphapicker.github.io/klon-stake/" target="_blank" style="color: var(--accent-orange); font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 4px;">${t('discover_klon_stake')}</a>`;
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
 
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+        db.hasUnsavedChanges = false;
+        saveData();
+        updateBackupWarningUI();
 
-    setTimeout(() => {
-      showCustomDialog('💾', t('export_title'), msg, false, null);
-      URL.revokeObjectURL(url);
-    }, 700);
-  }
+        showCustomDialog(
+          '💾', 
+          db.lang === 'en' ? 'Export Successful' : 'Exportation Réussie', 
+          db.lang === 'en' ? 'Your KLON Corp backup file has been successfully downloaded!' : 'Votre fichier de sauvegarde KLON Corp a été téléchargé avec succès !'
+        );
+      } catch(e) {
+        showCustomDialog('⚠️', db.lang === 'en' ? 'Error' : 'Erreur', db.lang === 'en' ? 'Failed to export data.' : 'Impossible d\'exporter les données.');
+      }
+    }
+
 
   function importJSON(event) {
     const file = event.target.files[0];
@@ -3404,6 +3323,7 @@
         const imported = JSON.parse(e.target.result);
         if (imported && Array.isArray(imported.records)) {
           db = imported;
+          db.hasUnsavedChanges = false;
           if (!Array.isArray(db.everUnlockedRewards)) {
             db.everUnlockedRewards = Array.isArray(db.everUnlockedBadges) ? db.everUnlockedBadges : [];
           }
@@ -3417,6 +3337,7 @@
           document.documentElement.setAttribute('data-theme', db.theme || 'dark');
           initPeriodNavigator();
           updateAppHeader();
+          updateBackupWarningUI();
           applyLanguageUI();
           showCustomDialog('✅', 'Import', t('import_success'));
         } else {
@@ -3435,15 +3356,17 @@
       db.records = [];
       db.companyName = '';
       db.ticker = '';
+      db.hasUnsavedChanges = false;
       db.everUnlockedRewards = [];
       saveData();
+      updateBackupWarningUI();
       document.getElementById('company-name-input').value = '';
       updatePeriodDisplay();
       renderRecordsList();
       updateAppHeader();
       populateCompareSelectors();
       if (document.getElementById('tab2').classList.contains('active')) renderStockReport();
-    });
+    }, t('btn_reset'));
   }
 
   function copyFortuneoCode() {
@@ -3459,7 +3382,6 @@
     }, 1800);
   }
   
-  /* FENÊTRE DE DÉTAIL / FÉLICITATIONS CONDITIONNELLES (+50% DU RECORD) */
   function showRecordDetail(type) {
     if (!db.records || db.records.length === 0) return;
 
@@ -3477,7 +3399,6 @@
       if (!best) return;
 
       const avgFcf = totalFcf / db.records.length;
-      // Vérifie si le record surclasse la moyenne d'au moins +50%
       const isOutperformance = avgFcf > 0 && best.fcf >= (avgFcf * 1.5);
 
       const [y, m] = best.month.split('-');
@@ -3517,7 +3438,6 @@
       if (!best) return;
 
       const avgHourly = totalHours > 0 ? (totalFcf / totalHours) : 0;
-      // Vérifie si le taux horaire surclasse la moyenne d'au moins +50%
       const isOutperformance = avgHourly > 0 && best.rate >= (avgHourly * 1.5);
 
       const [y, m] = best.month.split('-');
@@ -3554,6 +3474,7 @@
 
     initPeriodNavigator();
     updateAppHeader();
+    updateBackupWarningUI();
     applyLanguageUI();
   });
 </script>
@@ -3562,7 +3483,6 @@
  if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js').then((reg) => {
-        // Vérifie s'il y a une mise à jour de sw.js au chargement de la page
         reg.update();
       });
     });
