@@ -1,5 +1,7 @@
 {
-  "name": "KLON Corp.",
+   "id": "/klon-corp/",
+  "scope": "/klon-corp/",
+  "name": "KLON Corp",
   "short_name": "KLON Corp",
   "start_url": "./index.html",
   "display_override": ["fullscreen", "standalone"],
